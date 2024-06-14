@@ -1,0 +1,33 @@
+---
+title: "Facebook"
+output: html_document
+date: "2024-06-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Histogram 
+```{r}
+library(readxl)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+comp<- read.csv("C:/Users/csjap/Downloads/MSDS-Orientation-Computer-Survey(in).csv")
+```
+
+```{r}
+dat1<-comp%>%
+  select(Operating.System,CPU.Number.of.Cores..int.)
+dat2<-dat1[!(dat1$Operating.System %in% c("Windows (by professional necessity), MacOS (by personal choice)", "All of the above" , "I use Mac and Linux")), ]
+```
+
+```{r}
+ggplot(dat2, aes(x=CPU.Number.of.Cores..int., fill = Operating.System)) + geom_histogram(binwidth =2, color="orange", alpha = 0.7, position="dodge") +
+  labs(title= "Frequency of CPU Number of Cores (int) by Operating System", x = "CPU Number of Cores", y ="Frequency")+theme_minimal()
+```
+
