@@ -1,5 +1,5 @@
 ---
-title: "mini presentation"
+title: "Binomial and Normal Distribution Convergence"
 output: html_document
 date: "2024-06-16"
 ---
