@@ -1,0 +1,63 @@
+---
+title: "mini presentation"
+output: html_document
+date: "2024-06-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Convergence of Binomial and Normal Distributions
+
+##Load Packages
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+##Set seed for reproducibility
+```{r}
+set.seed(123)
+```
+
+##Parameters for binomial distribution
+```{r}
+n<- 1000
+p<- 0.5
+```
+
+##Generate data for binomial distribution with large N
+```{r}
+binom_dat<- rbinom(1000, size=n , prob = p)
+binom_df<- data.frame(value=binom_dat)
+```
+
+##Generate data for normal distribution
+```{r}
+mean<- n*p
+sd<- sqrt(n*p*(1-p))
+norm_dat <- rnorm(1000, mean=mean, sd=sd)
+norm_df <- data.frame(value=norm_dat)
+
+```
+
+##Binomial histogram
+```{r}
+binom_plot<- ggplot(binom_df, aes(x=value))+geom_histogram(binwidth=30, fill="blue", color="black", alpha =0.7)+labs(title="Binomial Distribution", x="Value", y="Frequency")+theme_minimal()
+```
+
+##Normal histogram
+```{r}
+norm_plot<- ggplot(norm_df, aes(x=value))+geom_histogram(binwidth = 30, fill="red", color="black", alpha=0.7) +labs("Normal Distribution", x="Value", y="Frequency")+theme_minimal()
+```
+
+##Produce plots
+```{r}
+ggsave("binom_plot.png", binom_plot)
+ggsave("norm_plot.png", norm_plot)
+plot(binom_plot)
+plot(norm_plot)
+```
+
