@@ -1,0 +1,41 @@
+---
+title: "random number generator"
+output: html_document
+date: "2024-06-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+##Creating histogram for each distribution
+```{r}
+set.seed(123)
+#binomial distribution
+binom_dat <-rbinom(1000, size=10, prob=0.5)
+binom_df <-data.frame(value= binom_dat)
+
+#poisson distribution
+poisson_dat<-rpois(1000, lambda = 3)
+poisson_df <- data.frame(value = poisson_dat)
+
+#normal distribution
+norm_dat <- rnorm(1000, mean = 0, sd =1)
+norm_df <- data.frame(value= norm_dat)
+
+```
+```{r}
+#binomial histogram
+ggplot(binom_df, aes(x=value)) + geom_histogram(binwidth =1, fill = "blue", color="black", alpha =0.7)+
+  labs(title = "Binomial Distribution", x= "Value", y= "Frequency") + theme_minimal()
+
+#Poisson histogram
+ggplot(poisson_df, aes(x=value))+ geom_histogram(binwidth =1, fill = "green", color="black", alpha = 0.7) + labs(title="Poisson Distribution", x= "Value", y="Frequency")+theme_minimal()
+
+ggplot(norm_df, aes(x=value))+geom_histogram(binwidth = 0.5, fill="red", color="black", alpha=0.7)+labs(title="Normal Distribution", x="Value", y="Frequency")+ theme_minimal()
+```
+
