@@ -1,0 +1,93 @@
+---
+title: "Project Euler"
+output: html_document
+date: "2024-06-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+#Problem 1
+```{r}
+numbers <- 1:999
+multiples <- numbers[numbers %% 3 ==0 | numbers %% 5 ==0]
+sum<- sum(multiples)
+print(sum)
+
+```
+
+#Problem 2
+```{r}
+fib1<- 1
+fib2<- 2
+sum_fib<- 2
+while(TRUE) {
+  fib_next <- fib1 + fib2
+  
+  if (fib_next>4000000) {
+    break
+  }
+  
+  if (fib_next %% 2 ==0) {
+    sum_fib <- sum_fib + fib_next
+  }
+  
+  fib1<- fib2
+  fib2<- fib_next
+  }
+
+print(sum_fib)
+```
+
+#Problem 3
+```{r}
+is_prime <- function(n) {
+  if(n <= 1) {
+    return(FALSE)
+  }
+  if (n <=3) {
+    return(TRUE)
+  }
+  if (n %% 2 ==0 || n %% 3 ==0) {
+    return(FALSE)
+  }
+  i <- 5
+  while (i * i <= n) {
+    if (n %% i ==0 || n %% (i+2) ==0) {
+      return(FALSE)
+    }
+    i <- i + 6 
+  }
+  return(TRUE)
+}
+
+largest <- function(n) {
+  largest_factor <- 1
+  while (n %% 2 ==0) {
+    largest_factor <- 2
+    n <- n/2
+  }
+  
+  factor <- 3
+  while (factor * factor <= n) {
+    while (n %% factor == 0) {
+      largest_factor <- factor
+      n<- n/ factor
+    }
+    factor <- factor + 2
+  }
+  
+  if(n>2) {
+    largest_factor <- n
+  }
+  
+  return(largest_factor)
+}
+    
+number<- 600851475143
+result <- largest(number)
+print(result)
+```
+
