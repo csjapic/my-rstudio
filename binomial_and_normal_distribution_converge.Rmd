@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Convergence of Binomial and Normal Distributions
 
+#Motivation
+In probability theory, the normal distribution may be used as an approximation to the binomial distribution under certain conditions. Specifically, as the number of trials "N" becomes large, the binomial distribution with parameters "N" and "p" converges to a normal distribution with mean mu = Np and variance sigma^2 = Np(1-p).
+
 ##Load Packages
 ```{r}
 library(tidyverse)
@@ -61,3 +64,5 @@ plot(binom_plot)
 plot(norm_plot)
 ```
 
+#Conclusion
+The histograms display the binomial distribution with a large number of trials N and probability p converges to a normal distribution with the same mean and variance. This visualization aligns with the theoretical convergence described by the central limit theorem.
